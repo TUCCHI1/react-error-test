@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+
+  // ↓Hookが実行される前に返されるかもしれない値
+  if (counter > 0) {
+    return <h1>Hello</h1>;
+  }
+
+  // 値を返す可能性のある条件文の後にフックを使用した場合、以下のエラーが発生する。
+  // Rendered fewer hooks than expected.
+  // This may be caused by an accidental early return statement
+  const [message, setMessage] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={() => setCounter(counter + 1)}>count +1</button>
     </div>
   );
 }
