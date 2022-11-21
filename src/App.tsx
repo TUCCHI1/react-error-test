@@ -4,16 +4,13 @@ import "./App.css";
 
 function App() {
   const [counter, setCounter] = useState(0);
+  // 2つ目のhookを、値を返すかもしれない条件の上に移動させた。
+  // これでhookが呼び出される順番がレンダリングの度に同じであるのでエラーが発生しない。
+  const [message, setMessage] = useState("");
 
-  // ↓Hookが実行される前に返されるかもしれない値
   if (counter > 0) {
     return <h1>Hello</h1>;
   }
-
-  // 値を返す可能性のある条件文の後にフックを使用した場合、以下のエラーが発生する。
-  // Rendered fewer hooks than expected.
-  // This may be caused by an accidental early return statement
-  const [message, setMessage] = useState("");
 
   return (
     <div>
